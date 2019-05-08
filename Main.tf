@@ -12,10 +12,10 @@ terraform {
   required_version = ">= 0.11.11"
 
   backend "s3" {
-    bucket = "tf-backend-remote-state"
-    key    = "terraform.tfstate"
+    bucket         = "tf-backend-remote-state"
+    key            = "terraform.tfstate"
     dynamodb_table = "tf-remote-state-lock"
-    region = "us-east-1"
+    region         = "us-east-1"
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_instance" "amiWebServer" {
   ami                         = "${var.aws_ubuntu_instance}"
   instance_type               = "${var.aws_instance_type}"
   associate_public_ip_address = "true"
-  vpc_security_group_ids = ["${aws_security_group.sgAMIWebServer.id}"]
+  vpc_security_group_ids      = ["${aws_security_group.sgAMIWebServer.id}"]
 
   user_data = <<-EOF
               #!/bin/bash
